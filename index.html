@@ -303,5 +303,33 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+<script>
+    // Close mobile menu after clicking a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            const navCollapse = document.getElementById('navbarResponsive');
+            if (navCollapse.classList.contains('show')) {
+                navCollapse.classList.remove('show');
+            }
+        });
+    });
+    // Highlight active section on scroll
+    window.addEventListener('scroll', () => {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        sections.forEach(section => {
+            const top = section.offsetTop - 100;
+            const bottom = top + section.offsetHeight;
+            if (window.scrollY >= top && window.scrollY < bottom) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(section.id)) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    });
+</script>
     </body>
 </html>
